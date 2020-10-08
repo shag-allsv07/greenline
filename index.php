@@ -1,3 +1,9 @@
+<?php
+include_once ('db/db_connect.php');
+
+$sql = mysqli_query($connect, "SELECT * FROM `category` ORDER BY `title` ASC");
+$arrCategory = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,10 +67,9 @@
           <h2 class="star"><span>Категории</span></h2>
           <div class="clr"></div>
           <ul class="sb_menu">
-            <li><a href="#">Финансы</a></li>
-            <li><a href="#">Интернет</a></li>
-            <li><a href="#">Технологии</a></li>
-            <li><a href="#">Медицина</a></li>
+            <? foreach ($arrCategory as $category): ?>
+            <li><a href="#"><?=$category['title'];?></a></li>
+            <? endforeach; ?>
           </ul>
         </div>
       </div>
