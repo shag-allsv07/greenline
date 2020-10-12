@@ -1,5 +1,6 @@
 <?php
-$connect = mysqli_connect('localhost', 'root', '', 'greenline');
+
+$connect = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_BASE);
 
 if (!$connect) {
     echo 'Произошла ошибка' . PHP_EOL ;
@@ -9,4 +10,5 @@ if (!$connect) {
 }
 
 mysqli_set_charset($connect, "utf8");
+
 ?>
