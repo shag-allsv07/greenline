@@ -1,0 +1,3 @@
+создать таблицу support: id, question, answer
+заполнить 
+вывести

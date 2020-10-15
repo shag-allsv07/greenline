@@ -2,19 +2,26 @@
 
 require_once 'core/init.php';
 
-$title = 'GreenLine';
+$title = 'GreenLine | Главная';
 
-$sql = mysqli_query($connect, "SELECT * FROM `category` ORDER BY `title` ASC");
-$arrCategory = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+/*
+* $arrCategory - список категорий для layout (init.php)
+*/
+
+$sql = mysqli_query($connect, "SELECT N.`id`, N.`title`, N.`preview_text`, N.`image`, N.`date`, N.`comments_cnt`, C.`title` AS news_cat  FROM `news` AS N JOIN `category` AS C ON C.`id` = N.`category_id` LIMIT 2 OFFSET 1");
+$arrNews = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+
+//pr($arrNews);
+
+$pageContent = renderTemplate("main", [
+                                'arrNews' => $arrNews
+                                ]);
 
 
-$pageContent = renderTemplate("main");
 $res = renderTemplate('layout', [
                         'content' => $pageContent,
-                        'title' => 'GreenLine',
+                        'title' => $title,
                         'arrCategory' => $arrCategory
                         ]);
 
 echo $res;
-?>
-

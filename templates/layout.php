@@ -14,14 +14,14 @@
     <div class="header_resize">
       <div class="menu_nav">
         <ul>
-          <li class="active"><a href="index.html">Home</a></li>
-          <li><a href="support.html">Support</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li class="active"><a href="index.php">Главная</a></li>
+          <li><a href="support.php">Поддержка</a></li>
+          <li><a href="about.php">О нас</a></li>
+          <li><a href="contact.php">Контакты</a></li>
         </ul>
       </div>
       <div class="logo">
-        <h1><a href="index.html">Green<span>Line</span></a> <small>put your slogan here</small></h1>
+        <h1><a href="index.php">Green<span>Line</span></a> <small>put your slogan here</small></h1>
       </div>
       <div class="clr"></div>
     </div>
@@ -37,7 +37,7 @@
         <div class="searchform">
           <form id="formsearch" name="formsearch" method="post" action="#">
             <span>
-            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" value="Поиск по сайту:" type="text" />
+            <input name="editbox_search" class="editbox_search" id="editbox_search" maxlength="80" placeholder="Поиск по сайту:" type="text" />
             </span>
             <input name="button_search" src="images/search_btn.gif" class="button_search" type="image" />
           </form>
@@ -97,5 +97,6 @@
   </div>
 </div>
 <!-- END PAGE SOURCE -->
+</script>
 </body>
 </html>
