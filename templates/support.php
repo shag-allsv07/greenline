@@ -5,26 +5,16 @@
           <p><strong>Lorem ipsum dolor sit amet</strong></p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget bibendum tellus. Nunc vel imperdiet tellus. Mauris ornare aliquam urna, accumsan bibendum eros auctor ac.</p>
           <ul>
+          <? if (!empty($arrSupport)): ?>  
+          <? foreach ($arrSupport as $support): ?>
             <li class="block-question">
-              <p class="question">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p class="ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p class="question"><?=$support['question'];?></p>
+              <p class="ans"><?=$support['answer'];?></p>
             </li>
-            <li class="block-question">
-              <p class="question">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p class="ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </li>
-            <li class="block-question">
-              <p class="question">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p class="ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </li>
-            <li class="block-question">
-              <p class="question">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p class="ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </li>
-            <li class="block-question">
-              <p class="question">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p class="ans">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </li>
+          <? endforeach; ?>
+          <? else: ?>
+          <p><strong>Вопросов нет</strong></p>
+          <? endif; ?>
           </ul>
 
         </div>

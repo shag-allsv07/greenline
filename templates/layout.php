@@ -97,6 +97,5 @@
   </div>
 </div>
 <!-- END PAGE SOURCE -->
-</script>
 </body>
 </html>
