@@ -29,7 +29,7 @@ $arrPage = range(1, $totalPage); // массив со страницами [1,2,
 //конец пагинации
 
 $sql = mysqli_query($connect, "SELECT N.`id`, N.`title`, N.`preview_text`, N.`image`, N.`date`, N.`comments_cnt`, C.`title`".
-    "AS news_cat  FROM `news` AS N JOIN `category` AS C ON C.`id` = N.`category_id` ORDER BY N.`id` LIMIT $limit OFFSET $offset");
+    "AS news_cat  FROM `news` AS N JOIN `category` AS C ON C.`id` = N.`category_id` ORDER BY N.`id` LIMIT {$limit} OFFSET {$offset}");
 $arrNews = mysqli_fetch_all($sql, MYSQLI_ASSOC);
 
 
