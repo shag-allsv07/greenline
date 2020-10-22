@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 * Подключает шаблон с параметрами 
 */
 function renderTemplate($name, $data = []) 
@@ -22,11 +22,29 @@ function renderTemplate($name, $data = [])
     return $result; // возвращаем результат
 }
 
-/* 
+/**
 * функция для форматированного вывода массива 
 */
 function pr($arr) {
     echo '<pre>';
     print_r($arr);
     echo '</pre>';
+}
+
+/**
+ * функция добавления параметра в адресную строку
+ */
+function setPageParam ($param, $value) {
+    $qParam = $_SERVER['QUERY_STRING']; // получаем строку с параметрами
+    parse_str($qParam, $arr); // генерируем массив из этой строки
+
+    if (!empty($param) && !empty($value)) { // если переданы параметры
+        if (array_key_exists($param, $arr)) { // если есть такой ключ в массиве
+            $arr[$param] = $value; // меняем занчение в полученном массиве
+        }
+        else {
+            $arr[$param] = $value;
+        }
+    }
+    return http_build_query($arr); // генерирует строку с get параметрами
 }

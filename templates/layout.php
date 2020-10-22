@@ -47,7 +47,7 @@
           <div class="clr"></div>
           <ul class="sb_menu">
             <? foreach ($arrCategory as $category): ?>
-            <li><a href="#"><?=$category['title'];?></a></li>
+            <li><a href="?<?=setPageParam('category', $category['id']);?>"><?=$category['title'];?></a></li>
             <? endforeach; ?>
           </ul>
         </div>
