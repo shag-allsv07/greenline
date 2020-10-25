@@ -3,7 +3,7 @@
 require_once 'core/init.php';
 
 $title = 'GreenLine | Главная';
-$limit = 10; //количество новостей на странице
+$limit = 4; //количество новостей на странице
 /*
 * $arrCategory - список категорий для layout (init.php)
 */

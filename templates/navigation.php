@@ -4,22 +4,22 @@
         <small>Страница <?=$curPage;?> из <?=$totalPage;?></small>
 
         <?php if ($curPage > 2): // выводим ссылку на первцю страницу, если нужна?>
-            <a href="?page=1">«</a>
+            <a href="?<?=setPageParam('page', 1)?>">«</a>
         <?php endif;?>
 
         <?php if ($prevPage != ''): // выводим ссылку на предыдущую страницу?>
 
-            <a href="?page=<?=$prevPage;?>"><?=$prevPage;?></a>
+            <a href="?<?=setPageParam('page', $prevPage);?>"><?=$prevPage;?></a>
         <?php endif;?>
 
         <span><?=$curPage;?></span> <?// текущая страница?>
 
         <?php if ($nextPage != ''): // выводим ссылку на следующую страницу?>
-            <a href="?page=<?=$nextPage;?>"><?=$nextPage;?></a>
+            <a href="?<?=setPageParam('page', $nextPage);?>"><?=$nextPage;?></a>
         <?php endif;?>
 
         <?php if ($curPage < $totalPage-1):  // выводим ссылку на последнюю страницу, если нужна?>
-            <a href="?page=<?=$totalPage;?>">»</a>
+            <a href="?<?=setPageParam('page', $totalPage);?>">»</a>
         <?php endif; ?>
     </p>
 

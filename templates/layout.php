@@ -80,17 +80,17 @@
       <div class="col c3">
         <h2><span>Контакты</span></h2>
         <p>Мы будем рады ответить на любые вопросы.</p>
-        <p><a href="#">support@yoursite.com</a></p>
-        <p>+1 (123) 444-5677<br />
-          +1 (123) 444-5678</p>
-        <p>Адрес: 123 TemplateAccess Rd1</p>
+        <p><a href="#"><?=SITE_EMAIL;?></a></p>
+        <p><?=SITE_CONTACT_ONE;?><br />
+          <?=SITE_CONTACT_TWO;?></p>
+        <p>Адрес: <?=SITE_ADDRESS;?>></p>
       </div>
       <div class="clr"></div>
     </div>
   </div>
   <div class="footer">
     <div class="footer_resize">
-      <p class="lf">Copyright &copy; 2010 <a href="#">SiteName</a> - All Rights Reserved</p>
+      <p class="lf">Copyright &copy; <?=date(Y);?> <a href="#">SiteName</a> - All Rights Reserved</p>
       <p class="rf"><a href="">Free CSS Templates</a></p>
       <div class="clr"></div>
     </div>
