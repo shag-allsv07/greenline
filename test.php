@@ -1,5 +1,5 @@
 <?php
-
+require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
 ob_start(); //включение буферизации
 
 echo 'Hello';
@@ -40,4 +40,38 @@ echo $str;
 // m - сколько выводить
 
 // OFFSET m 
-// m - смещение (с какой начинать) 
+// m - смещение (с какой начинать)
+
+
+/* Безопасный запрос к БД
+
+1. Сформировать запрос с плесхолдерами
+2. Отправить в базу запрос
+3. Подставить значения в подготовленное выражение
+4. Выполнить подготовленное выражение
+5. Обработать результат выполнения
+
+$author = $_GET['author'];
+$id = $_GET['id'];
+*/
+$title = 'Технологии';
+
+//mysqli_prepare() - подготавливает запрос, возвращает указатель
+$stmt = mysqli_prepare($connect, "SELECT * FROM `category` WHERE `title` = ?");
+
+//mysqli_stmt_bind_param - привязывает переменные к параметрам запроса
+mysqli_stmt_bind_param($stmt, "s", $title); // i - integer, s - string, d - double, b - blob(бинарные данные)
+
+//mysqli_stmt_execute() - выполяняет подготовленный запрос
+mysqli_stmt_execute($stmt);
+
+//mysqli_stmt_get_result() - получает результат запроса
+$result = mysqli_stmt_get_result($stmt);
+
+while ($res = mysqli_fetch_assoc($result)) {
+ pr($res);
+}
+
+
+
+

@@ -14,10 +14,10 @@
     <div class="header_resize">
       <div class="menu_nav">
         <ul>
-          <li class="active"><a href="index.php">Главная</a></li>
-          <li><a href="support.php">Поддержка</a></li>
-          <li><a href="about.php">О нас</a></li>
-          <li><a href="contact.php">Контакты</a></li>
+          <li <?php if ($menuActive == 'main'):?> class="active" <?endif;?>><a href="index.php">Главная</a></li>
+          <li <?php if ($menuActive == 'support'):?> class="active" <?endif;?>><a href="support.php">Поддержка</a></li>
+          <li <?php if ($menuActive == 'about'):?> class="active" <?endif;?>><a href="about.php">О нас</a></li>
+          <li <?php if ($menuActive == 'contact'):?> class="active" <?endif;?>><a href="contact.php">Контакты</a></li>
         </ul>
       </div>
       <div class="logo">
@@ -81,8 +81,8 @@
         <h2><span>Контакты</span></h2>
         <p>Мы будем рады ответить на любые вопросы.</p>
         <p><a href="#"><?=SITE_EMAIL;?></a></p>
-        <p><?=SITE_CONTACT_ONE;?><br />
-          <?=SITE_CONTACT_TWO;?></p>
+        <p><?=SITE_CONTACT_1;?><br />
+          <?=SITE_CONTACT_2;?></p>
         <p>Адрес: <?=SITE_ADDRESS;?>></p>
       </div>
       <div class="clr"></div>
@@ -90,7 +90,7 @@
   </div>
   <div class="footer">
     <div class="footer_resize">
-      <p class="lf">Copyright &copy; <?=date(Y);?> <a href="#">SiteName</a> - All Rights Reserved</p>
+      <p class="lf">Copyright &copy; <?=date("Y");?> <a href="#">SiteName</a> - All Rights Reserved</p>
       <p class="rf"><a href="">Free CSS Templates</a></p>
       <div class="clr"></div>
     </div>

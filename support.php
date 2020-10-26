@@ -29,7 +29,7 @@ $arrPage = range(1, $totalPage);
 * $arrCategory - список категорий для layout (init.php)
 */
 
-$sql = mysqli_query($connect, "SELECT * FROM `support` ORDER BY id LIMIT {$limit} OFFSET {$offset}");
+$sql = mysqli_query($connect, "SELECT * FROM `support` ORDER BY id LIMIT $limit OFFSET $offset");
 $arrSupport = mysqli_fetch_all($sql, MYSQLI_ASSOC);
 
 $pageNavigation = renderTemplate('navigation', [
@@ -46,7 +46,8 @@ $page_content = renderTemplate('support', [
 $res = renderTemplate('layout', [
                                 'content' => $page_content,
                                 'title' => $title,
-                                'arrCategory' => $arrCategory
+                                'arrCategory' => $arrCategory,
+                                'menuActive' => 'support'
                                 ]);
 
 echo $res;

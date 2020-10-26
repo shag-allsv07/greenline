@@ -8,9 +8,17 @@ $limit = 4; //количество новостей на странице
 * $arrCategory - список категорий для layout (init.php)
 */
 
+// start Фильтрация по категориям
+if (isset($_GET['category'])) {
+    $category = intval($_GET['category']);
+    if ($category > 0) {
+        $sqlCategory = 'WHERE `category_id` = ' . $category;
+    }
+}
+// end Фильтрация по категориям
 
 // делаем пагинацию
-$sqlResTotal = mysqli_query($connect, "SELECT * FROM `news`");
+$sqlResTotal = mysqli_query($connect, "SELECT * FROM `news` $sqlCategory");
 $resTotal = mysqli_num_rows($sqlResTotal); //количество записей в таблице news
 
 $totalPage = ceil($resTotal / $limit); // общее число страниц
@@ -40,14 +48,6 @@ if ($page < $totalPage) {
 $is_nav = ($totalPage > 1) ? true : false; // если кол-во страниц больше одной, то true иначе false
 //конец пагинации
 
-// start Фильтрация по категориям
-if (isset($_GET['category'])) {
-    $category = intval($_GET['category']);
-    if ($category > 0) {
-        $sqlCategory = 'WHERE `category_id` = ' . $category;
-    }
-}
-// end Фильтрация по категориям
 
 $sql = mysqli_query($connect, "SELECT N.`id`, N.`title`, N.`preview_text`, N.`image`, N.`date`, N.`comments_cnt`, C.`title`".
     "AS news_cat  FROM `news` AS N JOIN `category` AS C ON C.`id` = N.`category_id` $sqlCategory ORDER BY N.`id` LIMIT $limit OFFSET $offset");
@@ -72,7 +72,8 @@ $pageContent = renderTemplate("main", [ // получаем html блока main
 $result = renderTemplate('layout', [ // Получаем главный layout (главный шаблон) страницы
                         'content' => $pageContent, // Передаем html код шаблона main
                         'title' => $title, // Передаем title
-                        'arrCategory' => $arrCategory // Передаем массив с категориями
+                        'arrCategory' => $arrCategory, // Передаем массив с категориями
+                        'menuActive' => 'main'
 ]);
 
 echo $result; // Выводим на экран окончательный html страницы
