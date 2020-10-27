@@ -1,15 +1,15 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
-ob_start(); //включение буферизации
-
-echo 'Hello';
+//ob_start(); //включение буферизации
+//
+//echo 'Hello';
 
 // $str = ob_get_contents(); //возвращает данные из буфера
 // ob_end_clean(); //Очищает буфер
 
-$str = ob_get_clean(); //возвращает данные из буфера и очищает буфер
-
-echo $str;
+//$str = ob_get_clean(); //возвращает данные из буфера и очищает буфер
+//
+//echo $str;
 
 
 // Пагинация:
@@ -54,24 +54,36 @@ echo $str;
 $author = $_GET['author'];
 $id = $_GET['id'];
 */
-$title = 'Технологии';
+//$title = 'Технологии';
+//
+////mysqli_prepare() - подготавливает запрос, возвращает указатель
+//$stmt = mysqli_prepare($connect, "SELECT * FROM `category`");
+//
+////mysqli_stmt_bind_param - привязывает переменные к параметрам запроса
+//mysqli_stmt_bind_param($stmt, "s", $title); // i - integer, s - string, d - double, b - blob(бинарные данные)
+//
+////mysqli_stmt_execute() - выполяняет подготовленный запрос
+//mysqli_stmt_execute($stmt);
+//
+////mysqli_stmt_get_result() - получает результат запроса
+//$result = mysqli_stmt_get_result($stmt);
+//
+//while ($res = mysqli_fetch_assoc($result)) {
+// pr($res);
+//}
 
-//mysqli_prepare() - подготавливает запрос, возвращает указатель
-$stmt = mysqli_prepare($connect, "SELECT * FROM `category` WHERE `title` = ?");
+$cat_id = 1;
+$comment_cnt = 2;
 
-//mysqli_stmt_bind_param - привязывает переменные к параметрам запроса
-mysqli_stmt_bind_param($stmt, "s", $title); // i - integer, s - string, d - double, b - blob(бинарные данные)
-
-//mysqli_stmt_execute() - выполяняет подготовленный запрос
+$stmt = mysqli_prepare($connect, "SELECT * FROM `news` WHERE `category_id` = ? AND `comments_cnt` = ?");
+mysqli_stmt_bind_param($stmt, "ii", $cat_id, $comment_cnt);
 mysqli_stmt_execute($stmt);
+$res = mysqli_stmt_get_result($stmt);
 
-//mysqli_stmt_get_result() - получает результат запроса
-$result = mysqli_stmt_get_result($stmt);
 
-while ($res = mysqli_fetch_assoc($result)) {
- pr($res);
+while ($resS = mysqli_fetch_assoc($res)) {
+    pr($resS);
 }
-
 
 
 

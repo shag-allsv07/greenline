@@ -3,7 +3,7 @@
 require_once 'core/init.php';
 
 $title = 'GreenLine | Поддержка';
-$limit = 3; // количество статей на странице
+$limit = 10; // количество статей на странице
 
 //пагинация
 $sqlTotalSupport = mysqli_query($connect, "SELECT * FROM `support`");
@@ -23,19 +23,37 @@ $offset = $page * $limit - $limit; // определяем с какой нов�
 
 $arrPage = range(1, $totalPage);
 
+$prevPage = '';
+if ($page > 1) {
+    $prevPage = $page - 1;
+}
+
+$nextPage = '';
+if ($page < $totalPage) {
+    $nextPage = $page + 1;
+}
+
+$is_nav = ($totalPage > 1) ? true : false; // если кол-во страниц больше одной, то true иначе false
+
 //конец пагинации
 
 /*
 * $arrCategory - список категорий для layout (init.php)
 */
 
-$sql = mysqli_query($connect, "SELECT * FROM `support` ORDER BY id LIMIT $limit OFFSET $offset");
-$arrSupport = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+$sql = mysqli_prepare($connect, "SELECT * FROM `support` ORDER BY id LIMIT ? OFFSET ?");
+mysqli_stmt_bind_param($sql, 'ii', $limit, $offset);
+mysqli_stmt_execute($sql);
+$resultSql = mysqli_stmt_get_result($sql);
+$arrSupport = mysqli_fetch_all($resultSql, MYSQLI_ASSOC);
 
 $pageNavigation = renderTemplate('navigation', [
-                                        'arrPage' => $arrPage, //передаем массив со страницами
+                                        //'arrPage' => $arrPage, //передаем массив со страницами
                                         'totalPage' => $totalPage, // переадем общее число страниц
-                                        'curPage' => $page // передаем текущую страницу
+                                        'curPage' => $page, // передаем текущую страницу
+                                        'nextPage' => $nextPage,
+                                        'prevPage' => $prevPage,
+                                        'show' => $is_nav
                                     ]);
 
 $page_content = renderTemplate('support', [
