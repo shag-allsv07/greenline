@@ -72,17 +72,19 @@ $id = $_GET['id'];
 // pr($res);
 //}
 
-$cat_id = 1;
-$comment_cnt = 2;
+$cat = $_GET['category'];
+$title = 'Технологии';
 
-$stmt = mysqli_prepare($connect, "SELECT * FROM `news` WHERE `category_id` = ? AND `comments_cnt` = ?");
-mysqli_stmt_bind_param($stmt, "ii", $cat_id, $comment_cnt);
-mysqli_stmt_execute($stmt);
-$res = mysqli_stmt_get_result($stmt);
+//$stmt = mysqli_prepare($connect, "SELECT * FROM `news` WHERE `category_id` = ? AND `comments_cnt` = ?");
+//mysqli_stmt_bind_param($stmt, "ii", $cat_id, $comment_cnt);
+//mysqli_stmt_execute($stmt);
+//$res = mysqli_stmt_get_result($stmt);
 
+$sql = "SELECT * FROM `category` WHERE `title` = ?";
+$res = getStmtResult($connect, $sql, array($title));
 
-while ($resS = mysqli_fetch_assoc($res)) {
-    pr($resS);
+while ($arRes = mysqli_fetch_assoc($res)) {
+    pr($arRes);
 }
 
 

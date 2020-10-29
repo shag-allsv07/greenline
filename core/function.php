@@ -84,6 +84,7 @@ function getDataFromDB() {
 }
  */
 
+
 function getWeekDay($day) {
     switch ($day) {
         case 0 : echo 'Воскресенье';
@@ -100,5 +101,47 @@ function getWeekDay($day) {
         break;
         case 6 : echo 'Суббота';
         break;
+    }
+}
+
+/**
+ * Функция для подготовленного запроса к БД
+ * @param $connect
+ * @param $query
+ * @param array $param
+ * @return bool|mysqli_result
+ */
+function getStmtResult($connect, $query, $param = []) {
+    if (!empty($param)) {
+        $stmt = mysqli_prepare($connect, $query); // подготавливае мзапрос
+        $type = ''; // подготавливаем аргумент с типами на основе типов с параметрами
+
+        foreach ($param as $item) {
+            if (is_int($item)) {
+                $type .= 'i';
+            }
+            elseif (is_string($item)) {
+                $type .= 's';
+            }
+            elseif (is_double($item)) {
+                $type .= 'd';
+            }
+            else {
+                $type .= 's';
+            }
+        }
+
+        $values = array_merge([$stmt, $type], $param); // подготавливаем массив параметров для передачи
+        $funk = 'mysqli_stmt_bind_param';
+        $funk(...$values); // ... - указывает на переменное кол-во аргументов
+        mysqli_stmt_execute($stmt); // выполняет подготовленный запрос
+        $result = mysqli_stmt_get_result($stmt); // получает результат запроса
+
+        return $result;
+    }
+    else {
+        $result = mysqli_query($connect, $query);
+
+        return $result;
     }
 }

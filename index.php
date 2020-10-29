@@ -9,19 +9,27 @@ $limit = 4; //количество новостей на странице
 */
 
 // start Фильтрация по категориям
+$where = '';
 if (isset($_GET['category'])) {
     $category = intval($_GET['category']);
     if ($category > 0) {
-        $sqlCategory = 'WHERE `category_id` = ' . $category;
+        $where = 'WHERE `category_id` = ?';
     }
 }
 // end Фильтрация по категориям
 
-// делаем пагинацию
-$sqlResTotal = mysqli_query($connect, "SELECT * FROM `news` $sqlCategory");
-$resTotal = mysqli_num_rows($sqlResTotal); //количество записей в таблице news
 
-$totalPage = ceil($resTotal / $limit); // общее число страниц
+
+// делаем пагинацию
+if ($where != '' && isset($category)) {
+    $resTotal = getStmtResult($connect, "SELECT * FROM `news` $where", [$category]);
+}
+else {
+    $resTotal = getStmtResult($connect, "SELECT * FROM `news`");
+}
+
+$total = mysqli_num_rows($resTotal); //количество записей в таблице news
+$totalPage = ceil($total / $limit); // общее число страниц
 
 $page = intval($_GET['page']); // получение номера страницы из адресной строки (массива GET) intval - принудительно приводит к числу
 if ($page <= 0) {
@@ -32,6 +40,26 @@ elseif ($page > $totalPage) {
 }
 
 $offset = $page * $limit - $limit; // определяем с какой новости начинать
+
+
+
+$is_nav = ($totalPage > 1) ? true : false; // если кол-во страниц больше одной, то true иначе false
+//конец пагинации
+
+
+
+$query = "SELECT N.`id`, N.`title`, N.`preview_text`, N.`image`, N.`date`, N.`comments_cnt`, C.`title`".
+    "AS news_cat  FROM `news` AS N JOIN `category` AS C ON C.`id` = N.`category_id` $where ORDER BY N.`id` LIMIT ? OFFSET ?";
+
+if ($where != '' && isset($category)) {
+    $param = [$category, $limit, $offset];
+}
+else {
+    $param = [$limit, $offset];
+}
+
+$sql = getStmtResult($connect, $query, [$param]);
+$arrNews = mysqli_fetch_all($sql, MYSQLI_ASSOC);
 
 $arrPage = range(1, $totalPage); // массив со страницами [1,2,3,4,5]
 
@@ -44,14 +72,6 @@ $nextPage = '';
 if ($page < $totalPage) {
     $nextPage = $page + 1;
 }
-
-$is_nav = ($totalPage > 1) ? true : false; // если кол-во страниц больше одной, то true иначе false
-//конец пагинации
-
-
-$sql = mysqli_query($connect, "SELECT N.`id`, N.`title`, N.`preview_text`, N.`image`, N.`date`, N.`comments_cnt`, C.`title`".
-    "AS news_cat  FROM `news` AS N JOIN `category` AS C ON C.`id` = N.`category_id` $sqlCategory ORDER BY N.`id` LIMIT $limit OFFSET $offset");
-$arrNews = mysqli_fetch_all($sql, MYSQLI_ASSOC);
 
 
 $pageNavigation = renderTemplate('navigation', [ // получаем html шаблон навигации
