@@ -84,7 +84,7 @@ function getDataFromDB() {
 }
  */
 
-
+/**
 function getWeekDay($day) {
     switch ($day) {
         case 0 : echo 'Воскресенье';
@@ -103,6 +103,40 @@ function getWeekDay($day) {
         break;
     }
 }
+*/
+
+/**
+ * Функция форматирования даты
+ */
+function new_time($a) { // преобразовываем время в нормальный вид
+    $date = date("j m Y",strtotime($a));
+    $date_time = date ('H:i', strtotime($a));
+    $ndate_exp = explode(' ', $date);
+    $nmonth = array(
+        1 => 'января',
+        2 => 'февраля',
+        3 => 'марта',
+        4 => 'апреля',
+        5 => 'мая',
+        6 => 'июня',
+        7 => 'июля',
+        8 => 'августа',
+        9 => 'сентября',
+        10 => 'октября',
+        11 => 'ноября',
+        12 => 'декабря'
+    );
+
+    foreach ($nmonth as $key => $value) {
+        if($key == intval($ndate_exp[1])) $nmonth_name = $value;
+    }
+
+    if($date == date('j m Y')) return 'сегодня в '.$date_time;
+    elseif($date == date('j m Y', strtotime('-1 day'))) return 'вчера в '.$date_time;
+    else return $ndate_exp[0].' '.$nmonth_name.' '.$ndate_exp[2].' в '.$date_time;
+}
+
+
 
 /**
  * Функция для подготовленного запроса к БД

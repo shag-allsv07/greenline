@@ -11,7 +11,7 @@
             <?=$arrNewsDetail['detail_text'];?>
         </p>
         <p>Tagged: <a href="#">orci</a>, <a href="#">lectus</a>, <a href="#">varius</a>, <a href="#">turpis</a></p>
-        <p><a href="#"><strong>Comments (<?=$arrNewsDetail['comments_cnt'];?>)</strong></a> <span>&nbsp;&bull;&nbsp;</span> <?=$arrNewsDetail['date'];?> <span>&nbsp;&bull;&nbsp;</span> <a href="#"><strong>Edit</strong></a></p>
+        <p><a href="#"><strong>Comments (<?=$arrNewsDetail['comments_cnt'];?>)</strong></a> <span>&nbsp;&bull;&nbsp;</span> <?=new_time($arrNewsDetail['date']);?> <span>&nbsp;&bull;&nbsp;</span> <a href="#"><strong>Edit</strong></a></p>
     </div>
     <div class="article">
         <h2><span>3</span> Responses</h2>

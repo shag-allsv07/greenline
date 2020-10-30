@@ -6,7 +6,7 @@ $title = 'GreenLine | Поддержка';
 $limit = 10; // количество статей на странице
 
 //пагинация
-$sqlTotalSupport = mysqli_query($connect, "SELECT * FROM `support`");
+$sqlTotalSupport = getStmtResult($connect, "SELECT * FROM `support`");
 $countSupport = mysqli_num_rows($sqlTotalSupport);
 
 $totalPage = ceil($countSupport / $limit); // общее число страниц
@@ -41,11 +41,8 @@ $is_nav = ($totalPage > 1) ? true : false; // если кол-во страни�
 * $arrCategory - список категорий для layout (init.php)
 */
 
-$sql = mysqli_prepare($connect, "SELECT * FROM `support` ORDER BY id LIMIT ? OFFSET ?");
-mysqli_stmt_bind_param($sql, 'ii', $limit, $offset);
-mysqli_stmt_execute($sql);
-$resultSql = mysqli_stmt_get_result($sql);
-$arrSupport = mysqli_fetch_all($resultSql, MYSQLI_ASSOC);
+$sql = getStmtResult($connect, "SELECT * FROM `support` ORDER BY id LIMIT ? OFFSET ?", [$limit, $offset]);
+$arrSupport = mysqli_fetch_all($sql, MYSQLI_ASSOC);
 
 $pageNavigation = renderTemplate('navigation', [
                                         //'arrPage' => $arrPage, //передаем массив со страницами

@@ -11,7 +11,7 @@ $limit = 4; //количество новостей на странице
 // start Фильтрация по категориям
 $where = '';
 if (isset($_GET['category'])) {
-    $category = intval($_GET['category']);
+    $category = intval($_GET['category']); //эта переменная либо 0, либо число (привели к числу с помощью intval)
     if ($category > 0) {
         $where = 'WHERE `category_id` = ?';
     }
@@ -21,6 +21,7 @@ if (isset($_GET['category'])) {
 
 
 // делаем пагинацию
+// Если есть WHERE условие и выбрана категория
 if ($where != '' && isset($category)) {
     $resTotal = getStmtResult($connect, "SELECT * FROM `news` $where", [$category]);
 }
@@ -41,11 +42,21 @@ elseif ($page > $totalPage) {
 
 $offset = $page * $limit - $limit; // определяем с какой новости начинать
 
+$arrPage = range(1, $totalPage); // массив со страницами [1,2,3,4,5]
+
+$prevPage = '';
+if ($page > 1) {
+    $prevPage = $page - 1;
+}
+
+$nextPage = '';
+if ($page < $totalPage) {
+    $nextPage = $page + 1;
+}
 
 
 $is_nav = ($totalPage > 1) ? true : false; // если кол-во страниц больше одной, то true иначе false
 //конец пагинации
-
 
 
 $query = "SELECT N.`id`, N.`title`, N.`preview_text`, N.`image`, N.`date`, N.`comments_cnt`, C.`title`".
@@ -58,20 +69,9 @@ else {
     $param = [$limit, $offset];
 }
 
-$sql = getStmtResult($connect, $query, [$param]);
-$arrNews = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+$res = getStmtResult($connect, $query, $param);
+$arrNews = mysqli_fetch_all($res, MYSQLI_ASSOC);
 
-$arrPage = range(1, $totalPage); // массив со страницами [1,2,3,4,5]
-
-$prevPage = '';
-if ($page > 1) {
-    $prevPage = $page - 1;
-}
-
-$nextPage = '';
-if ($page < $totalPage) {
-    $nextPage = $page + 1;
-}
 
 
 $pageNavigation = renderTemplate('navigation', [ // получаем html шаблон навигации
