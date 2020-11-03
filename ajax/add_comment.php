@@ -2,12 +2,14 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/core/init.php';
 
-$query = "INSERT INTO `comments` SET `text` = ?, `author` = ?, `news_id` = ?, `date` = NOW()";
-$resC = getStmtResult($connect, $query, [$_POST['message'], $_POST['name'], $_POST['news_id']]);
+$queryAddComment = "INSERT INTO `comments` SET `text` = ?, `author` = ?, `news_id` = ?, `date` = NOW()";
+$resC = getStmtResult($connect, $queryAddComment, [$_POST['message'], $_POST['name'], $_POST['news_id']]);
 
-$resN = getStmtResult($connect, "SELECT `comments_cnt` FROM `news` WHERE `id` = ?", [$_POST['news_id']]);
+$queryCommentsCnt = "SELECT `comments_cnt` FROM `news` WHERE `id` = ?";
+$resN = getStmtResult($connect, $queryCommentsCnt, [$_POST['news_id']]);
 $cnt = mysqli_fetch_assoc($resN)['comments_cnt'];
 $cnt++;
 
-$updateNews = getStmtResult($connect, "UPDATE `news` SET `comments_cnt` = ? WHERE `id` = ?", [$cnt, $_POST['news_id']]);
+$queryUpdateNews = "UPDATE `news` SET `comments_cnt` = ? WHERE `id` = ?";
+$updateNews = getStmtResult($connect, $queryUpdateNews, [$cnt, $_POST['news_id']]);
 

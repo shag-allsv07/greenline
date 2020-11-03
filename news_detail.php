@@ -8,14 +8,26 @@ $title = 'News';
  * START Вывод новости
  */
 
-$query = "SELECT N.`id`, N.`title`, N.`detail_text`, N.`image`, N.`date`, N.`comments_cnt`, C.`title`".
+$queryNews = "SELECT N.`id`, N.`title`, N.`detail_text`, N.`image`, N.`date`, N.`comments_cnt`, C.`title`".
     "AS news_cat  FROM `news` AS N JOIN `category` AS C ON C.`id` = N.`category_id` WHERE N.`id` = ? LIMIT ?";
 
-$res = getStmtResult($connect, $query, [$id, 1]);
-$arrNewsDetail = mysqli_fetch_assoc($res);
+$resNews = getStmtResult($connect, $queryNews, [$id, 1]);
+$arrNewsDetail = mysqli_fetch_assoc($resNews);
 
 /**
  * END Вывод новости
+ */
+
+/**
+ * START Вывод тегов
+ */
+
+$queryTags = "SELECT * FROM `tags` WHERE `news_id` = ?";
+$resTags = getStmtResult($connect, $queryTags, [$id]);
+$arrTags = mysqli_fetch_all($resTags, MYSQLI_ASSOC);
+
+/**
+ * END Вывод тегов
  */
 
 /**
@@ -37,7 +49,8 @@ $comments = renderTemplate('comments', [ // получаем шаблон бло
 
 $pageContent = renderTemplate("news_detail", [ // получаем html блока main (изменяемого контента)
     'arrNewsDetail' => $arrNewsDetail, // Передаем массив с новостями
-    'comments' => $comments
+    'comments' => $comments,
+    'arrTags' => $arrTags
 ]);
 
 

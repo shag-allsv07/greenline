@@ -1,6 +1,6 @@
 <?php if (!empty($arrComments)): ?>
 
-<h2><span><?=count($arrComments);?></span> Комментарии к новости</h2>
+<h2>Комментарии к новости<span>: <?=count($arrComments);?></span></h2>
 <div class="clr"></div>
 
 <?php foreach ($arrComments as $comment): ?>

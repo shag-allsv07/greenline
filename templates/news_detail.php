@@ -10,7 +10,13 @@
         <p>
             <?=$arrNewsDetail['detail_text'];?>
         </p>
-        <p>Tagged: <a href="#">orci</a>, <a href="#">lectus</a>, <a href="#">varius</a>, <a href="#">turpis</a></p>
+        <? if (count($arrTags) > 0): ?>
+        <p>Тэги:
+        <? foreach ($arrTags as $tag): ?>
+            <a href="#">#<?=$tag['tag'];?></a>
+        <? endforeach; ?>
+        </p>
+        <? endif; ?>
         <p><a href="#"><strong>Комментарии (<?=$arrNewsDetail['comments_cnt'];?>)</strong></a> <span>&nbsp;&bull;&nbsp;</span> <?=new_time($arrNewsDetail['date']);?> <span>&nbsp;&bull;&nbsp;</span> <a href="#"><strong>Edit</strong></a></p>
     </div>
     <div class="article">
@@ -20,21 +26,23 @@
     <div class="article">
         <h2><span>Оставьте</span> комментарий</h2>
         <div class="clr"></div>
-        <div class="error" id="form_error"></div>
         <form action="#" method="post" id="form">
             <input type="hidden" name="news_id" value="<?=$arrNewsDetail['id'];?>">
             <ol>
                 <li>
                     <label for="name">Ваше имя</label>
                     <input id="name" name="name" class="text" />
+                    <div class="error" id="form_error_name"></div>
                 </li>
                 <li>
                     <label for="email">Ваш Email</label>
                     <input id="email" name="email" class="text" />
+                    <div class="error" id="form_error_email"></div>
                 </li>
                 <li>
                     <label for="message">Ваш комментарий</label>
                     <textarea id="message" name="message" rows="8" cols="50"></textarea>
+                    <div class="error" id="form_error_message"></div>
                 </li>
                 <li>
                     <input type="button" class="button" value="Отправить" name="send_comment" id="send_comment" />
