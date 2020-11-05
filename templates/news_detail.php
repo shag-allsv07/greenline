@@ -10,18 +10,18 @@
         <p>
             <?=$arrNewsDetail['detail_text'];?>
         </p>
-        <? if (count($arrTags) > 0): ?>
+        <? if (!empty($arrTags)): ?>
         <p>Тэги:
         <? foreach ($arrTags as $tag): ?>
-            <a href="#">#<?=$tag['tag'];?></a>
+            <a href="/?tag=<?=$tag['tag'];?>">#<?=$tag['tag'];?></a>&nbsp;
         <? endforeach; ?>
         </p>
         <? endif; ?>
-        <p><a href="#"><strong>Комментарии (<?=$arrNewsDetail['comments_cnt'];?>)</strong></a> <span>&nbsp;&bull;&nbsp;</span> <?=new_time($arrNewsDetail['date']);?> <span>&nbsp;&bull;&nbsp;</span> <a href="#"><strong>Edit</strong></a></p>
+        <p><a href="#"><strong>Комментарии (<span id="comments_count"><?=$arrNewsDetail['comments_cnt'];?></span>)</strong></a> <span>&nbsp;&bull;&nbsp;</span> <?=new_time($arrNewsDetail['date']);?> <span>&nbsp;&bull;&nbsp;</span> <a href="#"><strong>Edit</strong></a></p>
     </div>
     <div class="article">
 
-    <?=$comments;?>
+    <div id="comments"><?=$comments;?></div>
     </div>
     <div class="article">
         <h2><span>Оставьте</span> комментарий</h2>

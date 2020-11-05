@@ -39,7 +39,14 @@ $(document).ready(function () {
                 url: '/ajax/add_comment.php',
                 data: $("#form").serialize(),
                 success: function (data) {
-                    console.log(data);
+                    let dat = JSON.parse(data);
+
+                    $("#comments").html(dat.comments);
+                    $("#comments_count").html(dat.comments_count);
+
+                    name.val('');
+                    email.val('');
+                    message.val('');
                 }
             });
         }

@@ -3,12 +3,14 @@
 require_once 'core/init.php';
 
 $title = 'GreenLine | Главная';
-$limit = 4; //количество новостей на странице
+$limit = 10; //количество новостей на странице
 /*
 * $arrCategory - список категорий для layout (init.php)
 */
 
-// start Фильтрация по категориям
+/**
+ * start Фильтрация по категориям
+ */
 $where = '';
 if (isset($_GET['category'])) {
     $category = intval($_GET['category']); //эта переменная либо 0, либо число (привели к числу с помощью intval)
@@ -16,11 +18,16 @@ if (isset($_GET['category'])) {
         $where = 'WHERE `category_id` = ?';
     }
 }
-// end Фильтрация по категориям
+/**
+ * end Фильтрация по категориям
+ */
 
 
 
-// делаем пагинацию
+
+/**
+ *делаем пагинацию
+*/
 // Если есть WHERE условие и выбрана категория
 if ($where != '' && isset($category)) {
     $resTotal = getStmtResult($connect, "SELECT * FROM `news` $where", [$category]);
