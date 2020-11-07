@@ -10,6 +10,7 @@
 </head>
 <body>
 <!-- START PAGE SOURCE -->
+<div id="overlay" class="overlay"></div>
 <div class="main">
   <div class="header">
     <div class="header_resize">
@@ -72,9 +73,10 @@
         <p>Будь в курсе!<br />
           На сайте представлена подборка самых свежих новостей науки, медицины, современных технологий и многого другого. Вы можете подписаться на нашу рассылку, чтобы всегда быть в курсе.</p>
         <div>
-          <form class="subscribe">
-            <input type="email" name="email" placeholder="Ваш email" />
-            <input type="submit" class="button" value="Подписаться" />
+          <form class="subscribe" method="post">
+            <input type="email" name="email" id="subscribe_email" placeholder="Ваш email" />
+            <div id="form_error_subscribe"></div>
+            <input type="button" class="button" id="subscribe_btn" value="Подписаться" />
           </form>
         </div>
       </div>
@@ -96,6 +98,12 @@
       <div class="clr"></div>
     </div>
   </div>
+</div>
+
+<div id="ok_subscribe" class="ok_subscribe">
+    <div class="msg_subscribe">
+        <span>Вы подписались на рассылку новостей</span>
+    </div>
 </div>
 <!-- END PAGE SOURCE -->
 </body>

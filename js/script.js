@@ -52,4 +52,39 @@ $(document).ready(function () {
         }
     });
 
+    $("#subscribe_btn").click(function () {
+        let email = $("#subscribe_email");
+
+        if (email.val() == '') {
+            $("#form_error_subscribe").html('Заполните поле');
+            email.css("border", "1px solid red");
+        }
+        $("#form_error_subscribe").html('');
+        email.css("border", "1px solid #c0c0c0");
+
+        if (email.val() != '') {
+            $.ajax({
+               type: 'post',
+                url: '/ajax/subscribe.php',
+                data: $('#subscribe_email'),
+                success: function (data) {
+                    if (data == 'ok_subscribe') {
+                        let overlay = $("#overlay");
+                        let msg = $("#ok_subscribe");
+                        overlay.addClass('active');
+                        msg.addClass('active');
+                    }
+                    if (data == 'error_subscribe') {
+                        $("#form_error_subscribe").html('Такой email уже подписан');
+                    }
+                    $("#form_error_subscribe").html('');
+
+                    $(document).click(function () {
+                        $(".overlay").removeClass('active');
+                        $(".ok_subscribe").removeClass('active');
+                    });
+                }
+            });
+        }
+    });
 });

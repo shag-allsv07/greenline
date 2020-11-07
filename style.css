@@ -387,3 +387,40 @@ ol li .send {
 .input_error {
 	border: 1px solid red;
 }
+
+.overlay {
+	position: fixed;
+	z-index: 5;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.6); /* затемнение фона */
+	display: none;
+}
+.overlay.active {
+	display: block;
+}
+
+.ok_subscribe {
+	color: #323a3f;
+	font-size: 20px;
+	padding-top: 20px;
+	text-align: center;
+	z-index: 10;
+	width: 300px;
+	height: 100px;
+	color: #323a3f;
+	background-color: #fff;
+	border: 1px solid #8ca5af;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%);
+	transform: translateX(-50%);
+	display: none;
+}
+
+.ok_subscribe.active {
+	display: block;
+}
