@@ -72,20 +72,45 @@ $id = $_GET['id'];
 // pr($res);
 //}
 
-$cat = $_GET['category'];
-$title = 'Технологии';
+//$cat = $_GET['category'];
+//$title = 'Технологии';
+//
+////$stmt = mysqli_prepare($connect, "SELECT * FROM `news` WHERE `category_id` = ? AND `comments_cnt` = ?");
+////mysqli_stmt_bind_param($stmt, "ii", $cat_id, $comment_cnt);
+////mysqli_stmt_execute($stmt);
+////$res = mysqli_stmt_get_result($stmt);
+//
+//$sql = "SELECT * FROM `category` WHERE `title` = ?";
+//$res = getStmtResult($connect, $sql, array($title));
+//
+//while ($arRes = mysqli_fetch_assoc($res)) {
+//    pr($arRes);
+//}
+pr($_FILES);
+/*if ($_FILES['user_file']['error'] == 0) {
 
-//$stmt = mysqli_prepare($connect, "SELECT * FROM `news` WHERE `category_id` = ? AND `comments_cnt` = ?");
-//mysqli_stmt_bind_param($stmt, "ii", $cat_id, $comment_cnt);
-//mysqli_stmt_execute($stmt);
-//$res = mysqli_stmt_get_result($stmt);
+    $upload = $_SERVER['DOCUMENT_ROOT'] . '/upload/'; // путь к папке загрузки
+    $arrName = explode('.', $_FILES['user_file']['name']); //
+    $name = $arrName[0] . '_' . time() . '.' . $arrName[1]; //составляем новое имя для файла с использованием метки времени
+    move_uploaded_file($_FILES['user_file']['tmp_name'], $upload . $name);
+}*/
 
-$sql = "SELECT * FROM `category` WHERE `title` = ?";
-$res = getStmtResult($connect, $sql, array($title));
-
-while ($arRes = mysqli_fetch_assoc($res)) {
-    pr($arRes);
+if (!empty($_FILES['user_file']['error'])) {
+    foreach ($_FILES['user_file']['error'] as $key => $value) {
+        if ($value == 0) {
+            $upload = $_SERVER['DOCUMENT_ROOT'] . '/upload/';
+            $arrName = explode('.', $_FILES['user_file']['name'][$key]);
+            $name = $arrName[0] . '_' . time() . '.' . $arrName[1];
+            move_uploaded_file($_FILES['user_file']['tmp_name'][$key], $upload . $name);
+        }
+    }
 }
-
-
-
+?>
+<!-- Форма для загрузки файлов -->
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="user_file[]"><br>
+    <input type="file" name="user_file[]"><br>
+    <input type="file" name="user_file[]"><br>
+    <input type="file" name="user_file[]"><br>
+    <input type="submit" value="Загрузить">
+</form>

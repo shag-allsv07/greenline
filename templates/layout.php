@@ -74,7 +74,7 @@
           На сайте представлена подборка самых свежих новостей науки, медицины, современных технологий и многого другого. Вы можете подписаться на нашу рассылку, чтобы всегда быть в курсе.</p>
         <div>
           <form class="subscribe" method="post">
-            <input type="email" name="email" id="subscribe_email" placeholder="Ваш email" />
+            <input type="text" name="email" id="subscribe_email" placeholder="Ваш email" />
             <div id="form_error_subscribe"></div>
             <input type="button" class="button" id="subscribe_btn" value="Подписаться" />
           </form>

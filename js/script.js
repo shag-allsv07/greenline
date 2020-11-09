@@ -52,21 +52,27 @@ $(document).ready(function () {
         }
     });
 
+    /**
+     * Подписка на новости
+     */
     $("#subscribe_btn").click(function () {
         let email = $("#subscribe_email");
 
         if (email.val() == '') {
-            $("#form_error_subscribe").html('Заполните поле');
+            $("#form_error_subscribe").html('Заполните поле').css('color', 'red');
             email.css("border", "1px solid red");
         }
-        $("#form_error_subscribe").html('');
-        email.css("border", "1px solid #c0c0c0");
+        $('#subscribe_email').focus(function () {
+            $("#form_error_subscribe").html('');
+            email.css("border", "1px solid #c0c0c0");
+        });
+
 
         if (email.val() != '') {
             $.ajax({
                type: 'post',
                 url: '/ajax/subscribe.php',
-                data: $('#subscribe_email'),
+                data: $('form.subscribe').serialize(),
                 success: function (data) {
                     if (data == 'ok_subscribe') {
                         let overlay = $("#overlay");
