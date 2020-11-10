@@ -19,7 +19,7 @@
 <div class="form-add__news">
 
         <?php if ($_SESSION['error'] == 'error'): ?>
-            <span class="error">Заполните все поля</span>
+            <span class="error" style="font-size: 18px;">Заполните все поля</span>
         <?php endif; ?>
         <?php if ($_SESSION['add_news'] == '1'): ?>
             <span class="succes">Запись добавлена успешно</span>
