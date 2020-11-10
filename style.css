@@ -381,6 +381,9 @@ ol li .send {
 	padding: 2px;
 	cursor: pointer;
 }
+.succes {
+	color: green;
+}
 .error {
 	color: red;
 }
@@ -423,4 +426,52 @@ ol li .send {
 
 .ok_subscribe.active {
 	display: block;
+}
+
+.form_auth {
+	width: 400px;
+	border: 1px solid rgb(110, 110, 110);
+	display: flex;
+	justify-content: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.login, .password {
+	width: 250px;
+	height: 25px;
+	font-size: 14px;
+	padding-left: 5px;
+}
+
+.block_title,
+.block_prewiew-text,
+.block_detail-text,
+.block_image,
+.block_category {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.title-add_news {
+	width: 100%;
+	height: 25px;
+}
+
+.upload_image-add_news,
+.category-add_news {
+	width: 250px;
+	height: 25px;
+}
+
+.prewiew-text-add_news,
+.detail-text-add_news {
+	width: 100%;
+	height: 150px;
+}
+
+.btn-add_news {
+	width: 100px;
+	height: 25px;
+	cursor: pointer;
 }

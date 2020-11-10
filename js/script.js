@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    /*
+    * Добавление комментариев
+    */
     $("#send_comment").click(function () {
         let name = $("#name");
         let email = $("#email");
@@ -93,4 +96,28 @@ $(document).ready(function () {
             });
         }
     });
+
+    /*
+    * Добавление новой статьи в админ панели
+    */
+    // $("#btn-add_news").click(function(){
+    //     let title = $("#title-add_news");
+    //     let prewiew_text = $("#prewiew-text-add_news");
+    //     let detail_text = $("#detail-text-add_news");
+    //     let upload_file = $("#upload_image-add_news");
+    //     let category = $("#category-add_news");
+
+        
+    //     if (title != '' && prewiew_text != '' && detail_text != '') {
+    //         $.ajax({
+    //             type: 'post',
+    //             url: '/ajax/add_news.php',
+    //             data: $("#form-add-news").serialize(),
+    //             success: function(data){
+    //                 console.log(data);
+    //             }
+    //         });
+    //     }
+    // });
+
 });

@@ -67,7 +67,7 @@ $is_nav = ($totalPage > 1) ? true : false; // если кол-во страни�
 
 
 $query = "SELECT N.`id`, N.`title`, N.`preview_text`, N.`image`, N.`date`, N.`comments_cnt`, C.`title`".
-    "AS news_cat  FROM `news` AS N JOIN `category` AS C ON C.`id` = N.`category_id` $where ORDER BY N.`id` LIMIT ? OFFSET ?";
+    "AS news_cat  FROM `news` AS N JOIN `category` AS C ON C.`id` = N.`category_id` $where ORDER BY N.`id` DESC LIMIT ? OFFSET ?";
 
 if ($where != '' && isset($category)) {
     $param = [$category, $limit, $offset];
