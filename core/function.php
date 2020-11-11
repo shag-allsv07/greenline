@@ -84,26 +84,46 @@ function getDataFromDB() {
 }
  */
 
-/**
-function getWeekDay($day) {
-    switch ($day) {
-        case 0 : echo 'Воскресенье';
-        break;
-        case 1 : echo 'Понедельник';
-        break;
-        case 2 : echo 'Вторник';
-        break;
-        case 3 : echo 'Среда';
-        break;
-        case 4 : echo 'Четверг';
-        break;
-        case 5 : echo 'Пятница';
-        break;
-        case 6 : echo 'Суббота';
-        break;
-    }
-}
-*/
+///**
+// * Функция обрабтки тэгов
+// */
+//function getAddTags($tag) {
+//    $searchSymbol = strpos($tag, ',');
+//    if ($searchSymbol === false) {
+//        return $tag;
+//    }
+//    else {
+//        $arrTags = explode(',', $tag);
+//        $arrNewTag = [];
+//        foreach ($arrTags as $key => $tag) {
+//            $name = 'tag_' . $key;
+//            $arrNewTag[$name] = $arrTags[$key];
+//        }
+//        return $arrNewTag;
+//    }
+//}
+//
+//
+///**
+// * Функция формирования запроса
+// */
+//function getQueryTag($arrNewTag) {
+//    if (is_array($arrNewTag)) {
+//        $arrTag = getAddTags($arrNewTag);
+//
+//        $query = '';
+//        foreach ($arrTag as $tag) {
+//            $query .= '(?, ?)';
+//        }
+//        return $query;
+//    }
+//    else {
+//        $query = '(?, ?)';
+//        return $query;
+//    }
+//
+//}
+
 
 /**
  * Функция форматирования даты

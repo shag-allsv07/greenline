@@ -57,6 +57,10 @@
                 <?php endforeach; ?>
             </select>
         </div>
+        <div class="block_tags">
+            <label for="add_tags">Введите тэг новости</label><br>
+            <input type="text" name="add_tags" id="add_tags" class="add_tags <?if ($_SESSION['error'] == 'error'):?>input_error<?endif;?>"><br>
+        </div>
         <?php unset($_SESSION['error']); ?>
         <input type="submit" name="btn-add_news" id="btn-add_news" class="btn-add_news" value="Сохранить">
     </form>

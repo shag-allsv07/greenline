@@ -95,22 +95,31 @@ pr($_FILES);
     move_uploaded_file($_FILES['user_file']['tmp_name'], $upload . $name);
 }*/
 
-if (!empty($_FILES['user_file']['error'])) {
-    foreach ($_FILES['user_file']['error'] as $key => $value) {
-        if ($value == 0) {
-            $upload = $_SERVER['DOCUMENT_ROOT'] . '/upload/';
-            $arrName = explode('.', $_FILES['user_file']['name'][$key]);
-            $name = $arrName[0] . '_' . time() . '.' . $arrName[1];
-            move_uploaded_file($_FILES['user_file']['tmp_name'][$key], $upload . $name);
-        }
-    }
-}
-?>
+//if (!empty($_FILES['user_file']['error'])) {
+//    foreach ($_FILES['user_file']['error'] as $key => $value) {
+//        if ($value == 0) {
+//            $upload = $_SERVER['DOCUMENT_ROOT'] . '/upload/';
+//            $arrName = explode('.', $_FILES['user_file']['name'][$key]);
+//            $name = $arrName[0] . '_' . time() . '.' . $arrName[1];
+//            move_uploaded_file($_FILES['user_file']['tmp_name'][$key], $upload . $name);
+//        }
+//    }
+//}
+//?>
 <!-- Форма для загрузки файлов -->
-<form method="post" enctype="multipart/form-data">
-    <input type="file" name="user_file[]"><br>
-    <input type="file" name="user_file[]"><br>
-    <input type="file" name="user_file[]"><br>
-    <input type="file" name="user_file[]"><br>
-    <input type="submit" value="Загрузить">
+<!--<form method="post" enctype="multipart/form-data">-->
+<!--    <input type="file" name="user_file[]"><br>-->
+<!--    <input type="file" name="user_file[]"><br>-->
+<!--    <input type="file" name="user_file[]"><br>-->
+<!--    <input type="file" name="user_file[]"><br>-->
+<!--    <input type="submit" value="Загрузить">-->
+<!--</form>-->
+<?php
+    $res = getAddTags($_POST['tag']);
+    pr($res);
+?>
+
+<form action="" method="post">
+    <input type="text" name="tag" id="">
+    <input type="submit" value="ok">
 </form>

@@ -448,14 +448,20 @@ ol li .send {
 .block_prewiew-text,
 .block_detail-text,
 .block_image,
-.block_category {
+.block_category,
+.block_tags {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
 
-.title-add_news {
+.title-add_news,
+.add_tags {
 	width: 100%;
 	height: 25px;
+}
+.add_tags {
+	margin-top: 3px;
+	margin-bottom: 3px;
 }
 
 .upload_image-add_news,
