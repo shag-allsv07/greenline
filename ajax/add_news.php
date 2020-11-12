@@ -28,11 +28,12 @@ if ((!empty($_POST['title']) && $_POST['title'] != '')
         $resAddNews = getStmtResult($connect, $queryAddNews, [$title, $pr_text, $d_text, $file, $category]);
         $idAddNews = mysqli_insert_id($connect);
 
-        $queryAddTag = "INSERT INTO `tags`(`tag`, `news_id`) VALUE (?, ?)";
-        $resAddTag = getStmtResult($connect, $queryAddTag, [$tag, $idAddNews]);
-        $idAddTag = mysqli_insert_id($connect);
+        if (!empty($tag) && $tag != '') {
+            $queryAddTag = "INSERT INTO `tags`(`tag`, `news_id`) VALUE (?, ?)";
+            $resAddTag = getStmtResult($connect, $queryAddTag, [$tag, $idAddNews]);
+        }
 
-        if ($idAddNews > 0 && $idAddTag > 0) {
+        if ($idAddNews > 0) {
             mysqli_commit($connect);
             $_SESSION['add_news'] = '1';
             header ("Location: /admin.php");
