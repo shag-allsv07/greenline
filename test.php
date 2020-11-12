@@ -106,7 +106,7 @@ pr($_FILES);
 //    }
 //}
 //?>
-<!-- Форма для загрузки файлов -->
+<!-- Форма для загрузки файлов-->
 <!--<form method="post" enctype="multipart/form-data">-->
 <!--    <input type="file" name="user_file[]"><br>-->
 <!--    <input type="file" name="user_file[]"><br>-->
@@ -114,12 +114,24 @@ pr($_FILES);
 <!--    <input type="file" name="user_file[]"><br>-->
 <!--    <input type="submit" value="Загрузить">-->
 <!--</form>-->
-<?php
-    $res = getAddTags($_POST['tag']);
-    pr($res);
-?>
+<!---->
 
-<form action="" method="post">
-    <input type="text" name="tag" id="">
-    <input type="submit" value="ok">
-</form>
+<?php
+//создание полноценного индекса (толькло char, varchar, text)
+//CREATE FULL TEXT INDEX <название индекса> ON <таблица>(<поле>, <поле2> ....)
+
+/*
+1. Скорость
+2. Гибкость
+3. Релевантновсть - это соответствие найденной информации ожиданием поиска
+ */
+
+//SELECT * FROM `table` WHERE MATCH (`поле`) AGAINST ('текст')
+//MATCH - где ищем
+//AGAINST - что ищем
+
+//SELECT `id`, `detail_text`, MATCH(`detail_text`) AGAINST('формально код') AS score FROM `news` WHERE MATCH (`detail_text`) AGAINST ('формально код')
+//получение значения релевантности
+
+//IN BOOLEAN MODE - включает режим логического поиска
+?>

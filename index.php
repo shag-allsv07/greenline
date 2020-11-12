@@ -100,7 +100,7 @@ $result = renderTemplate('layout', [ // Получаем главный layout (
                         'content' => $pageContent, // Передаем html код шаблона main
                         'title' => $title, // Передаем title
                         'arrCategory' => $arrCategory, // Передаем массив с категориями
-                        'menuActive' => 'main'
+                        'menuActive' => 'index'
 ]);
 
 echo $result; // Выводим на экран окончательный html страницы

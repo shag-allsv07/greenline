@@ -357,6 +357,9 @@ ol li .send {
 	padding:0;
 	border:none;
 	float:left;
+	cursor: pointer;
+	background-image: url(images/search_btn.gif);
+
 }
 .block-question{
 	background-color: #f2f2f2;

@@ -21,7 +21,7 @@ if ((!empty($_POST['title']) && $_POST['title'] != '')
         $name = explode('.', $_FILES['upload_image']['name']);
         $file .= $name[0] . '_' . time() .'.'. $name[1];
 
-        $upload = $_SERVER['DOCUMENT_ROOT'] . '/images/';
+        $upload = $_SERVER['DOCUMENT_ROOT'] . '/upload/';
         move_uploaded_file($_FILES['upload_image']['tmp_name'], $upload . $file);
 
         $queryAddNews = "INSERT INTO `news` SET `title` = ?, `preview_text` = ?, `detail_text` = ?, `image` = ?, `date` = NOW(), `category_id` = ?";

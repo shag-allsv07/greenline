@@ -1,20 +1,3 @@
-<?php
-// if ((!empty($_POST['title']) && $_POST['title'] != '')
-// && (!empty($_POST['prewiew-text']) && $_POST['prewiew-text'] != '')
-// && (!empty($_POST['detail-text']) && $_POST['detail-text'] != '') 
-// && (!empty($_FILES['upload_image']['error']))
-// && (!empty($_POST['category'])))   
-// {
-//     pr($_POST);
-// }
-// else {
-// //echo 'Заполните все поля';
-// pr($_FILES);
-// }
-
-
-?>
-
 <?php if($_SESSION['is_admin'] == '1') : ?>
 <div class="form-add__news">
 
@@ -52,8 +35,7 @@
             <select name="category" id="category-add_news" class="category-add_news">
                 <?php $count = 0; ?>
                 <?php foreach ($arrCategory as $category) : ?>
-                <? $count++; ?>
-                <option value="<?=$count;?>"><?=$category['title'];?></option>
+                <option value="<?=$category['id'];?>"><?=$category['title'];?></option>
                 <?php endforeach; ?>
             </select>
         </div>
