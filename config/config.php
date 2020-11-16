@@ -1,9 +1,9 @@
 <?php
 //DB
 define("DB_HOST", 'localhost');
-define("DB_USER", 'root');
-define("DB_PASSWORD", '');
-define("DB_BASE", 'greenline');
+define("DB_USER", 'l61108qt_green');
+define("DB_PASSWORD", 'L8m&7CLy');
+define("DB_BASE", 'l61108qt_green');
 
 //contacts
 define("SITE_EMAIL", 'support@yoursite.com');

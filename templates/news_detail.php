@@ -6,7 +6,7 @@
         <h2><?=$arrNewsDetail['title'];?></h2>
         <div class="clr"></div>
         <p>Автор <a href="#">Admin</a> <span>&nbsp;&bull;&nbsp;</span> Категории <a href="#"><?=$arrNewsDetail['news_cat']?></a></p>
-        <img src="images/<?=$arrNewsDetail['image'];?>" width="625" height="205" alt="" />
+        <img src="<?=IMG_PATH;?>/<?=$arrNewsDetail['image'];?>" width="625" height="205" alt="" />
         <p>
             <?=$arrNewsDetail['detail_text'];?>
         </p>
